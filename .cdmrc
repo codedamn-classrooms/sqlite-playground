@@ -1,0 +1,5 @@
+tabs: ["query.sql"]
+run-button: node run.js
+terminals: ['pnpm i && python3 -m http.server 1337 --bind 0.0.0.0']
+browser-devtools: hide
+editor-size-percent: 32

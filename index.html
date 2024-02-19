@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<link rel="stylesheet" type="text/css" href="/assets/css/main.css" />
+		<meta charset="utf-8" />
+		<meta name="description" content="sqlite file viewer" />
+		<meta name="keywords" content="sqlite,viewer,db,database,online" />
+		<meta name="author" content="Juraj Novák" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>SQLite Viewer</title>
+		<link href="/assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link href="/assets/css/select2.css" rel="stylesheet" />
+		<link href="/assets/css/select2-bootstrap.css" rel="stylesheet" />
+		<link href="/assets/css/main.css" rel="stylesheet" />
+		<link href="/assets/css/ribbons.min.css" rel="stylesheet" />
+		<link rel="image_src" href="/assets/img/icon.png" />
+		<link rel="icon" type="image/png" href="/assets/img/icon.png" />
+	</head>
+	<body>
+		<img src="/assets/img/icon.png" style="display: none" />
+
+		<div id="main-container" class="container">
+			<div id="output-box" class="container-fluid">
+				<div class="row">
+					<div class="col-md-12">
+						<select
+							id="tables"
+							class="form-control select2"
+							title="Table"
+						></select
+						><br />
+					</div>
+
+					<div class="col-md-11">
+						<div
+							id="sql-editor"
+							class="panel panel-default form-control form-control-lg"
+							onkeydown="onKeyDown(event)"
+						></div>
+					</div>
+
+					<div class="col-sm-1">
+						<button
+							class="btn btn-sm btn-primary"
+							id="sql-run"
+							type="submit"
+							onclick="executeSql(this)"
+						>
+							Execute
+						</button>
+					</div>
+
+					<div class="col-md-12">
+						<div style="overflow-x: auto">
+							<table
+								id="data"
+								class="table table-condensed table-bordered table-hover table-striped"
+							>
+								<thead>
+									<tr></tr>
+								</thead>
+								<tbody></tbody>
+							</table>
+						</div>
+
+						<div
+							class="alert alert-danger box"
+							id="error"
+							style="display: none"
+						></div>
+					</div>
+				</div>
+			</div>
+
+			<div class="alert alert-danger box" style="display: none"></div>
+			<div class="alert alert-warning box" style="display: none"></div>
+			<div class="alert alert-info box" style="display: none"></div>
+		</div>
+
+		<div id="bottom-bar" class="text-center">
+			<div class="inline">
+				<button
+					class="btn btn-default btn-sm"
+					id="page-prev"
+					type="submit"
+					onclick="setPage(this, false)"
+				>
+					<span
+						class="glyphicon glyphicon-chevron-left"
+						aria-hidden="true"
+					></span>
+				</button>
+				<a
+					href="javascript:void(0)"
+					data-toggle="tooltip"
+					data-placement="top"
+					onclick="setPage(this)"
+					id="pager"
+				></a>
+				<button
+					class="btn btn-default btn-sm"
+					id="page-next"
+					type="submit"
+					onclick="setPage(this, true)"
+				>
+					<span
+						class="glyphicon glyphicon-chevron-right"
+						aria-hidden="true"
+					></span>
+				</button>
+			</div>
+		</div>
+
+		<script src="/assets/js/jquery-1.11.3.min.js"></script>
+		<script src="/assets/js/filereader.js"></script>
+		<script src="/assets/js/sql.js"></script>
+		<script src="/assets/js/select2.min.js"></script>
+		<script src="/assets/js/ace/ace.js"></script>
+		<script src="/assets/js/bootstrap.min.js"></script>
+		<script src="/assets/js/mindmup-editabletable.js"></script>
+		<script src="/assets/js/main.js?v=11"></script>
+
+		<script>
+			function onKeyDown(e) {
+				if ((e.ctrlKey || e.metaKey) && e.which == 13) {
+					executeSql()
+				}
+			}
+		</script>
+	</body>
+</html>

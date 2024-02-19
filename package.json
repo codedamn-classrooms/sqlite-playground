@@ -1,0 +1,11 @@
+{
+	"name": "sqlite-playground",
+	"type": "module",
+	"version": "1.0.0",
+	"license": "MIT",
+	"dependencies": {
+		"better-sqlite3": "9.0.0",
+		"cli-color": "2.0.3",
+		"cli-table": "0.3.11"
+	}
+}
